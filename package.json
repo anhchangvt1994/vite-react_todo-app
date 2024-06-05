@@ -1,0 +1,72 @@
+{
+	"name": "vite-project-react",
+	"private": true,
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "cross-env MODE=development vite",
+		"build": "tsc && cross-env MODE=production vite build",
+		"build:esm": "tsc && cross-env MODE=production ESM=true vite build",
+		"preview": "vite preview",
+		"prettier": "tsc --noEmit && prettier src/**/*.{t,j}s{,x} --no-error-on-unmatched-pattern --check",
+		"lint": "tsc --noEmit && eslint src/**/*.{t,j}s{,x} --no-error-on-unmatched-pattern --ignore-pattern node_modules/",
+		"lint:fix": "npm run lint -- --fix",
+		"prettier:fix": "npm run prettier -- --write",
+		"format": "npm run prettier:fix && npm run lint:fix",
+		"prepare": "npx husky install",
+		"pre-commit": "tsc && lint-staged"
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead"
+	],
+	"dependencies": {
+		"polished": "^4.2.2",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-router-dom": "^6.14.1",
+		"styled-components": "^6.0.2"
+	},
+	"devDependencies": {
+		"commit-packages": "file:./config/commit-packages",
+		"lint-and-format-packages": "file:./config/lint-and-format-packages",
+		"build-tool-packages": "file:./config/build-tool-packages"
+	},
+	"eslintConfig": {
+		"extends": [
+			"./config/eslint.config.cjs"
+		]
+	},
+	"prettier": "./config/prettier.config.cjs",
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx}": "npm run prettier:fix && npm run lint"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		],
+		"rules": {
+			"type-enum": [
+				2,
+				"always",
+				[
+					"feat",
+					"style",
+					"test",
+					"fix",
+					"docs",
+					"release",
+					"update",
+					"perf",
+					"chore"
+				]
+			]
+		}
+	},
+	"config": {
+		"commitizen": {
+			"path": "cz-git",
+			"czConfig": "./config/cz.config.cjs"
+		}
+	}
+}
