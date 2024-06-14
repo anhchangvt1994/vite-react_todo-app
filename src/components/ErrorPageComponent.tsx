@@ -1,3 +1,3 @@
 export default function ErrorLoadingPageComponent() {
-	return <div>custom được rồi nè</div>
+	return <div>Error Loading Page</div>
 }

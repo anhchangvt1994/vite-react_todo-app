@@ -112,6 +112,21 @@ export default defineConfig(async ({ mode }) => {
 					{
 						polished: ['rgba'],
 					},
+					{
+						'@reduxjs/toolkit': [
+							'createSlice',
+							'configureStore',
+							'createAsyncThunk',
+							'createEntityAdapter',
+							'createEntitySelectors',
+							'createEntitySlice',
+						],
+						'@reduxjs/toolkit/query/react': ['createApi', 'fetchBaseQuery'],
+						'react-redux': ['useSelector', 'useDispatch'],
+					},
+					{
+						yup: [['*', 'yup']],
+					},
 				],
 				dts: './config/auto-imports.d.ts',
 				eslintrc: {

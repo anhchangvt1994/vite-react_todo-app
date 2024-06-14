@@ -1,0 +1,45 @@
+{
+  "location": [
+    {
+      "id": 1,
+      "name": "Tân Bình"
+    },
+    {
+      "id": 2,
+      "name": "Bình Tân"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Nguyễn Minh Trường",
+      "email": "abc@gmail.com",
+      "password": "123",
+      "locationId": 1
+    },
+    {
+      "name": "Nguyễn Minh Trường",
+      "password": "123",
+      "email": "anhchangvt1994@gmail.com",
+      "gender": 1,
+      "birthday": 1704042000000,
+      "id": 2
+    },
+    {
+      "name": "Nguyễn Minh Trường",
+      "password": "123",
+      "email": "anhchangvt1994@gmail.com",
+      "gender": 1,
+      "birthday": 1704042000000,
+      "id": 3
+    },
+    {
+      "name": "Nguyễn Minh Trường",
+      "password": "123",
+      "email": "anhchangvt1994@gmail.com",
+      "gender": 1,
+      "birthday": 1704042000000,
+      "id": 4
+    }
+  ]
+}

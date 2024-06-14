@@ -31,20 +31,20 @@ const NameLabel = styled.p`
 `
 const ContentLabel = styled.div``
 
-const data = Suspender(() => {
-	const duration = Math.floor(Math.random() * 2) * 1000
-	return new Promise((res) => {
-		setTimeout(function () {
-			res('OK')
-		}, duration)
-	})
-})
+const data = Suspender()
 
 export default function CommentRow({ total }: { total?: number }) {
 	const route = useRoute()
 	const amount = total ? total : Math.floor(Math.random() * 4) + 1
 
-	data.start()
+	data.start(() => {
+		const duration = Math.floor(Math.random() * 2) * 1000
+		return new Promise((res) => {
+			setTimeout(function () {
+				res('')
+			}, duration)
+		})
+	})
 
 	const commentItemList = new Array(amount).fill(null).map((val, idx) => (
 		<Row key={idx}>

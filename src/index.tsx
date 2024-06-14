@@ -1,14 +1,15 @@
+import router from 'app/router/index'
+import store from 'app/store'
 import 'assets/styles/main.css'
 import 'assets/styles/tailwind.css'
-import router from 'app/router/index'
-import { UserInfoProvider } from 'store/UserInfoContext'
+import { Provider } from 'react-redux'
 
 const root = createRoot(document.getElementById('root'))
 
 root.render(
 	<StrictMode>
-		<UserInfoProvider>
+		<Provider store={store}>
 			<RouterProvider router={router} />
-		</UserInfoProvider>
+		</Provider>
 	</StrictMode>
 )

@@ -18,9 +18,17 @@ interface Env {
     ROUTER_COMMENT_ID:           string;
     ROUTER_LOGIN_PATH:           string;
     ROUTER_LOGIN_ID:             string;
+    ROUTER_SIGN_UP_PATH:         string;
+    ROUTER_SIGN_UP_ID:           string;
     ROUTER_NOT_FOUND_PATH:       string;
+    API_BASE_URL:                string;
     STYLE_COLOR_DARK:            string;
     STYLE_COLOR_YELLOW:          string;
     STYLE_COLOR_BLUE:            string;
     STYLE_COLOR_WHITE:           string;
+    STORE_SLICE_USER:            string;
+    STORE_SLICE_STORAGE:         string;
+    STORE_SLICE_LOADING_STATUS:  string;
+    VALIDATION_EMAIL:            string;
+    VALIDATION_NAME:             string;
 }

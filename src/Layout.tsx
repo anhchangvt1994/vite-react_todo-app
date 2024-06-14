@@ -1,8 +1,12 @@
+import { selectLoadingKey } from 'app/store/slices/loadingStatusSlice'
+import { ILoadingStatus } from 'app/store/slices/loadingStatusSlice/types'
+import { removeUserInfo } from 'app/store/slices/userSlice'
+import { IUserInfo } from 'app/store/slices/userSlice/types'
+import { IRootState } from 'app/store/types'
+import ErrorLoadingPageComponent from 'components/ErrorPageComponent'
+import LoadingPageComponent from 'components/LoadingPageComponent'
 import ErrorBoundary from 'utils/ErrorBoundary'
 import LoadingBoundary from 'utils/LoadingBoundary'
-import LoadingPageComponent from 'components/LoadingPageComponent'
-import ErrorLoadingPageComponent from 'components/ErrorPageComponent'
-import { useUserInfo } from 'store/UserInfoContext'
 
 const MainContainer = styled.div`
 	max-width: 1280px;
@@ -19,37 +23,45 @@ const Header = styled.header`
 `
 
 function Layout() {
+	const dispatch = useDispatch()
 	const route = useRoute()
-	const { userState, setUserState } = useUserInfo()
-
-	const onClickLogout = () => {
-		setUserState({ email: '' })
-		route.handle.reProtect?.()
-	}
+	const loadingKey = useSelector<IRootState, ILoadingStatus['key']>(
+		selectLoadingKey
+	)
+	const userInfo = useSelector<IRootState, IUserInfo>((state) => state.user)
 
 	return (
 		<div className="layout">
 			<MainContainer>
 				<Header>
-					{userState && userState.email ? (
-						<>
-							{userState.email + ' | '}
-							<span style={{ cursor: 'pointer' }} onClick={onClickLogout}>
-								Logout
-							</span>
-						</>
+					{userInfo.id ? (
+						<button
+							className="btn"
+							onClick={() => {
+								dispatch(removeUserInfo())
+							}}
+						>
+							Logout
+						</button>
+					) : route.id === import.meta.env.ROUTER_LOGIN_ID ? (
+						<Link
+							className="btn btn-primary"
+							to={import.meta.env.ROUTER_SIGN_UP_PATH}
+						>
+							Sign Up
+						</Link>
 					) : (
 						<Link
-							style={{ cursor: 'pointer' }}
+							className="btn btn-primary"
 							to={import.meta.env.ROUTER_LOGIN_PATH}
 						>
-							Login
+							Sign In
 						</Link>
 					)}
 				</Header>
 				<ErrorBoundary fallback={<ErrorLoadingPageComponent />}>
 					<LoadingBoundary
-						// key={location.pathname}
+						key={`${route.id}_${loadingKey}`}
 						delay={150}
 						fallback={<LoadingPageComponent />}
 					>

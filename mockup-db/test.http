@@ -1,0 +1,43 @@
+@baseUrl = http://localhost:3000/api
+
+# users
+# @name getUsers
+GET {{ baseUrl }}/users
+
+###
+
+# @name addNewUsers
+POST {{ baseUrl }}/users
+Content-Type: application/json
+
+{
+    "name": "Hồng",
+    "email": "hong@gmail.com"
+}
+
+###
+
+# @name updateUsers
+PATCH {{ baseUrl }}/users/1
+Content-Type: application/json
+
+{
+    "name": "Nguyễn Minh Trường"
+}
+
+###
+
+# @name removeUsers
+DELETE http://localhost:3000/api/users/4
+Content-Type: application/json
+
+###
+
+# @name login
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "email": "abc@gmail.com",
+    "password": "123"
+}

@@ -106,6 +106,18 @@
     "useSlug": true,
     "useSlugWithoutDash": true,
     "useTitleCase": true,
-    "useUnsignedLetters": true
+    "useUnsignedLetters": true,
+    "configureStore": true,
+    "createAsyncThunk": true,
+    "createEntityAdapter": true,
+    "createEntitySelectors": true,
+    "createEntitySlice": true,
+    "createSlice": true,
+    "useSelector": true,
+    "Provider": true,
+    "useDispatch": true,
+    "createApi": true,
+    "fetchBaseQuery": true,
+    "yup": true
   }
 }

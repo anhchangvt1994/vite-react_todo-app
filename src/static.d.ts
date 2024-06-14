@@ -1,5 +1,3 @@
-import type { IndexRouteObject } from 'react-router-dom'
-
 declare module '*.svg' {
 	const value: string
 	export = value
@@ -43,18 +41,4 @@ declare module '*.webm' {
 declare module '*.scss' {
 	const value: string
 	export = value
-}
-
-export interface RouteObjectCustomize extends IndexRouteObject {
-	index?: boolean
-	handle?: {
-		params?: {
-			validate?: (params: Record<string, string>) => boolean
-			[key: string]: any
-		}
-		protect?: (certInfo: any) => boolean | string
-		reProtect?: (certInfo: any) => boolean | string
-		[key: string]: any
-	}
-	children?: RouteObjectCustomize[]
 }

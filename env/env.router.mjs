@@ -21,6 +21,10 @@ export default {
 			path: 'login',
 			id: 'LoginPage',
 		},
+		sign_up: {
+			path: 'sign-up',
+			id: 'SignUpPage',
+		},
 		not_found: {
 			path: '*',
 		},

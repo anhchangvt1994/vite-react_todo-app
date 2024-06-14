@@ -1,12 +1,11 @@
-import type { IUserInfo } from 'store/UserInfoContext'
 import type { To } from 'react-router'
 import type { INavigateInfo } from 'app/router/context/InfoContext'
 import type { IValidation } from 'app/router/context/ValidationContext'
-import { useUserInfo } from 'store/UserInfoContext'
 import { useNavigateInfo } from 'app/router/context/InfoContext'
+import useCertificateCustomizationInfo from '../hooks/useCertificateCustomizationInfo'
+import { RouteObjectCustomize } from '../types'
 
 export interface ICertInfo {
-	user: IUserInfo
 	navigateInfo: INavigateInfo
 	successPath: string
 }
@@ -24,12 +23,12 @@ function useProtectRoute(): IValidation {
 		status: 200,
 	}
 
-	const { userInfo } = useUserInfo()
+	const certificateCustomizationInfo = useCertificateCustomizationInfo()
 
 	const navigateInfo = useNavigateInfo()
 
-	const certificateInfo: ICertInfo = {
-		user: userInfo,
+	const certificateInfo: ICertInfo & typeof certificateCustomizationInfo = {
+		...certificateCustomizationInfo,
 		navigateInfo,
 		successPath,
 	}
@@ -38,14 +37,14 @@ function useProtectRoute(): IValidation {
 		const protect = (
 			item?.handle as
 				| {
-						protect: (certInfo?: ICertInfo) => string
+						protect: RouteObjectCustomize['handle']['protect']
 				  }
 				| undefined
 		)?.protect
 
 		if (protect && typeof protect === 'function') {
 			const checkProtection = (isReProtect = false) => {
-				const protectInfo = protect(certificateInfo)
+				const protectInfo = protect(certificateInfo, route)
 
 				if (!protectInfo) {
 					protection.status = 301
@@ -77,10 +76,10 @@ function useProtectRoute(): IValidation {
 } // useProtectRoute()
 
 export default function RouterProtection({
-	WatingVerifyRouterIDList,
+	waitingVerifyRouterIDList,
 	children,
 }) {
-	WAITING_VERIFY_ROUTER_ID_LIST = WatingVerifyRouterIDList
+	WAITING_VERIFY_ROUTER_ID_LIST = waitingVerifyRouterIDList
 
 	const route = useRoute()
 	const protection = useProtectRoute()
