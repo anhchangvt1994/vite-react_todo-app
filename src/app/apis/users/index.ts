@@ -1,7 +1,6 @@
 import { IStorageInfo } from 'app/store/slices/storageSlice/types'
 import { IRootState } from 'app/store/types'
 import { Suspender } from 'utils/Suspender'
-import { initialUserInfo } from './constants'
 import { IRequestSingUpParams, IUserInfo } from './types'
 
 const userApi = createApi({
@@ -39,22 +38,28 @@ export const {
 	useRegisterMutation,
 } = userApi
 
-const suspense = Suspender()
-export const useGetUserQuerySuspender = () => {
-	const userID = useSelector<IRootState, IStorageInfo['userID']>(
-		(state) => state.storage.userID
-	)
-	if (userID === 0) return
-	const result = userApi.useGetUserQuery(userID, { skip: userID === 0 })
+export const useGetUserQuerySuspender = (() => {
+	const suspender = Suspender()
 
-	const [getUser] = userApi.useLazyGetUserQuery()
+	return () => {
+		const userID = useSelector<IRootState, IStorageInfo['userID']>(
+			(state) => state.storage.userID
+		)
+		if (userID === 0) return
 
-	suspense.start(() => {
-		if (result.status === 'uninitialized')
-			return new Promise((res) => res(initialUserInfo))
+		if (!suspender.get()) {
+			const [getUser] = userApi.useLazyGetUserQuery()
 
-		return getUser(userID).unwrap()
-	})
-}
+			suspender.start(() => {
+				getUser(userID)
+					.unwrap()
+					.then((result) => suspender.resolve(result))
+					.catch((err) => suspender.reject(err))
+			})
+		}
+
+		return suspender.get()
+	}
+})()
 
 export default userApi

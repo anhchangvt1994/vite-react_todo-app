@@ -1,9 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useGetUserQuerySuspender, useLoginMutation } from 'app/apis/users'
-import { setUserID } from 'app/store/slices/storageSlice'
 import { Resolver, useForm } from 'react-hook-form'
 import { EMAIL_VALIDATION_REGEX } from './constants'
 import { IRequestLoginParams } from './types'
+import { ToastWrapper } from 'components/Toast/ToastWrapper'
+import { useToastListContext } from 'components/Toast/context'
 
 const Page = styled.div``
 
@@ -31,7 +32,17 @@ const schema = yup.object({
 })
 
 export default function LoginPage() {
-	const [login, { isLoading }] = useLoginMutation()
+	const [login, { isLoading, isError }] = useLoginMutation()
+	const { addToastList } = useToastListContext()
+
+	useEffect(() => {
+		if (isError)
+			addToastList({
+				type: 'error',
+				message: 'Login fail. Please try again later',
+			})
+	}, [isError])
+
 	const {
 		register,
 		handleSubmit,
@@ -105,6 +116,7 @@ export default function LoginPage() {
 							Loading
 						</div>
 					)}
+					<ToastWrapper />
 				</Block>
 			</Section>
 		</Page>

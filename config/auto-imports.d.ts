@@ -26,6 +26,7 @@ declare global {
   const createEntitySelectors: typeof import('@reduxjs/toolkit')['createEntitySelectors']
   const createEntitySlice: typeof import('@reduxjs/toolkit')['createEntitySlice']
   const createGlobalStyle: typeof import('styled-components')['createGlobalStyle']
+  const createPortal: typeof import('react-dom')['createPortal']
   const createRef: typeof import('react')['createRef']
   const createRoot: typeof import('react-dom/client')['createRoot']
   const createSlice: typeof import('@reduxjs/toolkit')['createSlice']

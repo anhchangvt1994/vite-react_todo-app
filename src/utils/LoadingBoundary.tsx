@@ -1,17 +1,34 @@
-import type { ReactElement, ReactNode, MutableRefObject } from 'react'
+import type {
+	ReactElement,
+	ReactNode,
+	MutableRefObject,
+	Dispatch,
+	SetStateAction,
+} from 'react'
 
-function useWithDelay(delay: number, fallback: ReactNode): ReactNode {
+const FallbackComponent = ({
+	delay,
+	fallback,
+}: {
+	delay: number
+	fallback: ReactNode
+}): ReactNode => {
 	const [isShow, setIsShow] = useState(delay === 0 ? true : false)
 
-	const timeout: MutableRefObject<NodeJS.Timeout | null> = useRef(null)
-
 	useEffect(() => {
-		if (!isShow) {
-			timeout.current = setTimeout(function () {
+		const timeout =
+			delay &&
+			setTimeout(function () {
 				setIsShow(true)
 			}, delay)
-		}
-	}, [delay, isShow])
+		const timeout2 = setTimeout(() => {})
+
+		return () =>
+			timeout &&
+			(() => {
+				clearTimeout(timeout)
+			})()
+	}, [])
 
 	return isShow ? fallback : ''
 }
@@ -20,14 +37,22 @@ export default function LoadingBoundary({
 	children,
 	delay,
 	fallback,
+	finish,
 }: {
 	children?: ReactNode | undefined
 	delay?: number
 	fallback?: ReactNode
+	finish?: (payload: { renewID?: number }) => void
 }): ReactElement {
 	const delayTime: number = Number(delay) || 0
+	const Component: ReactNode = (
+		<FallbackComponent delay={delayTime} fallback={fallback} />
+	)
+	const [mainComponent, setMainComponent] = useState(fallback)
 
-	const Component: ReactNode = useWithDelay(delayTime, fallback)
+	useLayoutEffect(() => {
+		setMainComponent(children)
+	}, [])
 
-	return <Suspense fallback={Component}>{children}</Suspense>
+	return <Suspense fallback={Component}>{mainComponent}</Suspense>
 } // LoadingBoundary

@@ -69,6 +69,7 @@ export default defineConfig(async ({ mode }) => {
 					},
 					{
 						'react-dom/client': ['createRoot'],
+						'react-dom': ['createPortal'],
 					},
 					'react-router-dom',
 					{

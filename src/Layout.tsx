@@ -5,6 +5,7 @@ import { IUserInfo } from 'app/store/slices/userSlice/types'
 import { IRootState } from 'app/store/types'
 import ErrorLoadingPageComponent from 'components/ErrorPageComponent'
 import LoadingPageComponent from 'components/LoadingPageComponent'
+import ToastListProvider from 'components/Toast/context'
 import ErrorBoundary from 'utils/ErrorBoundary'
 import LoadingBoundary from 'utils/LoadingBoundary'
 
@@ -12,7 +13,6 @@ const MainContainer = styled.div`
 	max-width: 1280px;
 	min-width: 0;
 	min-height: 100vh;
-	overflow: hidden;
 	padding: 16px;
 	margin: 0 auto;
 `
@@ -29,6 +29,8 @@ function Layout() {
 		selectLoadingKey
 	)
 	const userInfo = useSelector<IRootState, IUserInfo>((state) => state.user)
+
+	const routeID = useMemo(() => route.id.split('-')[0], [route.id])
 
 	return (
 		<div className="layout">
@@ -60,12 +62,10 @@ function Layout() {
 					)}
 				</Header>
 				<ErrorBoundary fallback={<ErrorLoadingPageComponent />}>
-					<LoadingBoundary
-						key={`${route.id}_${loadingKey}`}
-						delay={150}
-						fallback={<LoadingPageComponent />}
-					>
-						<Outlet />
+					<LoadingBoundary delay={150} fallback={<LoadingPageComponent />}>
+						<ToastListProvider>
+							<Outlet />
+						</ToastListProvider>
 					</LoadingBoundary>
 				</ErrorBoundary>
 			</MainContainer>

@@ -118,6 +118,7 @@
     "useDispatch": true,
     "createApi": true,
     "fetchBaseQuery": true,
-    "yup": true
+    "yup": true,
+    "createPortal": true
   }
 }

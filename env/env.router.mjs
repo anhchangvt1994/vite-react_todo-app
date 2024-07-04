@@ -6,6 +6,11 @@ export default {
 		},
 		home: {
 			path: '/',
+			id: 'TodoListPage',
+		},
+		todo_detail: {
+			path: ':slugs',
+			id: 'TodoListPage_TodoDetailPage',
 		},
 		content: {
 			path: ':slugs',
