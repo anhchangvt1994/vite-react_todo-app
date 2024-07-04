@@ -17,7 +17,7 @@ const customBaseQuery = retry(
 
 		return result
 	},
-	{ maxRetries: 0 }
+	{ maxRetries: 3 }
 )
 
 const todoListApi = createApi({

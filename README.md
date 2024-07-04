@@ -10,9 +10,9 @@ For more information about this project.
 ## Table of contents
 
 1. [Install](#install)
-2. [Introduction](#introduction)
+2. [Tech stacks](#tech-stacks)
 
-<h2>Install</h2>
+<h2 id="install">Install</h2>
 
 ##### Expect Node 18.x or higher
 
@@ -40,8 +40,37 @@ If use yarn 1.x
 yarn install
 ```
 
-<h2>Introduction</h2>
-<h3>Tech stacks used in this project</h3>
+Install mockup-db:
+
+```bash
+cd mockup-db
+```
+
+If use npm
+
+```bash
+npm install
+```
+
+If use yarn 1.x
+
+```bash
+yarn install
+```
+
+Run preview:
+
+```bash
+cd mockup-db
+npm run start
+```
+
+```bash
+npm run build
+npm run preview
+```
+
+<h2 id="tech-stacks">Tech stacks used in this project</h2>
 
 - **react-router**: is used to manage the routing capabilities between pages.
 - **react suspense**: is used to display a loader for asynchronous operations that require loading information, helping to enhance the user experience. In this application, suspense will be primarily used in the process of loading the `/pages` that are set up for lazy loading in the react-router definition and the `auto-login` process.

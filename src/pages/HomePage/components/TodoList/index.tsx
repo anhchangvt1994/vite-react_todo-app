@@ -27,7 +27,7 @@ function TodoList(params) {
 		if (isError) {
 			const tmpData = []
 			for (const i in todoListDraft) {
-				if (todoListDraft[i].isUpdating) {
+				if (todoListDraft[i]?.isUpdating) {
 					tmpData.push({
 						...todoListDraft[i],
 						isUpdating: false,

@@ -28,7 +28,7 @@ export function ToastError({ message, onDestroy }: IToastProps) {
 					<svg
 						stroke="currentColor"
 						fill="currentColor"
-						stroke-width="0"
+						strokeWidth="0"
 						viewBox="0 0 20 20"
 						aria-hidden="true"
 						className="h-5 w-5"
@@ -63,7 +63,7 @@ export function ToastError({ message, onDestroy }: IToastProps) {
 							stroke="currentColor"
 							strokeLinecap="round"
 							strokeLinejoin="round"
-							stroke-width="2"
+							strokeWidth="2"
 							d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
 						/>
 					</svg>
