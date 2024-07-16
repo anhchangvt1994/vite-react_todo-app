@@ -17,13 +17,13 @@ For more information about this project.
 
 ##### Expect Node 18.x or higher
 
-Clone source:
+**Clone source:**
 
 ```bash
 git clone https://github.com/anhchangvt1994/vite-react_todo-app.git
 ```
 
-Install:
+**Install:**
 
 ```bash
 cd vite-react_todo-app
@@ -41,25 +41,17 @@ If use yarn 1.x
 yarn install
 ```
 
-Install mockup-db:
+**Install mockup-db:**
 
 ```bash
 cd mockup-db
 ```
 
-If use npm
-
 ```bash
 npm install
 ```
 
-If use yarn 1.x
-
-```bash
-yarn install
-```
-
-Run preview:
+**Run preview:**
 
 ```bash
 cd mockup-db
