@@ -1,6 +1,6 @@
 import { ITodoInfo } from 'app/apis/todoList/types'
 
-export interface ITodoListParams extends React.HTMLAttributes<HTMLDivElement> {
+export interface ITodoListParams extends HTMLAttributes<HTMLDivElement> {
 	limit?: number
 }
 

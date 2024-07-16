@@ -20,7 +20,7 @@ export interface ITodoListContext {
 	// NOTE - TodoList Info
 	todoList: ITodoInfoCustom[]
 	getTodoListDraft: () => ITodoInfoCustom[]
-	setTodoList: React.Dispatch<React.SetStateAction<ITodoInfoCustom[]>>
+	setTodoList: Dispatch<SetStateAction<ITodoInfoCustom[]>>
 	setTodoListDraft: (todoList: ITodoInfoCustom[]) => void
 	updateTodoList: (todo: ITodoInfoCustom) => void
 	updateTodoListDraft: (todo: ITodoInfoCustom) => void
@@ -29,5 +29,5 @@ export interface ITodoListContext {
 
 	// NOTE - Limit
 	limit: number
-	setLimit: React.Dispatch<React.SetStateAction<number>>
+	setLimit: Dispatch<SetStateAction<number>>
 }

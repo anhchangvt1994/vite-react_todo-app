@@ -89,3 +89,9 @@ declare global {
   const useUnsignedLetters: typeof import('hooks/useStringHelper.ts')['useUnsignedLetters']
   const yup: typeof import('yup')
 }
+// for type re-export
+declare global {
+  // @ts-ignore
+  export type { Dispatch, SetStateAction, HTMLProps, HTMLAttributes, ComponentType } from 'react'
+  import('react')
+}

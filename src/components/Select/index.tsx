@@ -3,12 +3,12 @@ import { FieldValues, Path, UseFormRegister } from 'react-hook-form'
 import { ISelectOption } from './types'
 
 interface ISelectProp {
-	renderSelectWrap?: React.HTMLProps<HTMLLabelElement>
+	renderSelectWrap?: HTMLProps<HTMLLabelElement>
 	renderSelect: {
-		select?: React.HTMLProps<HTMLSelectElement>
+		select?: HTMLProps<HTMLSelectElement>
 		list?: Array<ISelectOption>
 	}
-	renderOption?: React.HTMLProps<HTMLOptionElement>
+	renderOption?: HTMLProps<HTMLOptionElement>
 	renderWarningLabel?: string
 	register?: UseFormRegister<any>
 }

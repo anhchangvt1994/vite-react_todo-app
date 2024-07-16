@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRemoveTodoMutation } from 'app/apis/todoList'
 import { useToastListContext } from 'components/Toast/context'
 import { useTodoListContext } from 'pages/HomePage/context'
-import { ITodoCardParams } from './types'
+import { ITodoCardProps } from './types'
 
 function TodoCardLoader() {
 	return (
@@ -23,7 +23,7 @@ function TodoCardLoader() {
 	)
 }
 
-function TodoCard({ data }: Omit<ITodoCardParams, 'isLoader'>) {
+function TodoCard({ data }: Omit<ITodoCardProps, 'isLoader'>) {
 	const { updateTodoListDraft } = useTodoListContext()
 	const [remove, { isLoading, isSuccess, isError }] = useRemoveTodoMutation()
 	const { addToastList } = useToastListContext()
@@ -96,9 +96,6 @@ function TodoCard({ data }: Omit<ITodoCardParams, 'isLoader'>) {
 	)
 }
 
-export function TodoCardWrapper({
-	isLoader,
-	...restOfParams
-}: ITodoCardParams) {
+export function TodoCardWrapper({ isLoader, ...restOfParams }: ITodoCardProps) {
 	return isLoader ? <TodoCardLoader /> : <TodoCard {...restOfParams} />
 }

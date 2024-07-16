@@ -17,5 +17,5 @@ export interface IToastProps {
 export interface IToastListContext {
 	toastList: IToastInfo[]
 	addToastList: (payload: IToastInfo) => void
-	setToastList: React.Dispatch<React.SetStateAction<IToastInfo[]>>
+	setToastList: Dispatch<SetStateAction<IToastInfo[]>>
 }

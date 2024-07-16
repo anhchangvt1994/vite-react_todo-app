@@ -61,6 +61,6 @@ export function ToastWrapper({ className }: IToastWrapperProps) {
 		>
 			{ToastList}
 		</div>,
-		document.getElementById('toast-message')
+		document.getElementById('toast')
 	)
 }

@@ -1,6 +1,6 @@
 import { ITodoInfoCustom } from '../TodoList/types'
 
-export interface ITodoCardParams {
+export interface ITodoCardProps {
 	isLoader?: boolean
 	data?: ITodoInfoCustom
 }
