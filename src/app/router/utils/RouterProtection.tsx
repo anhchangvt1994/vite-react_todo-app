@@ -3,7 +3,7 @@ import type { INavigateInfo } from 'app/router/context/InfoContext'
 import type { IValidation } from 'app/router/context/ValidationContext'
 import { useNavigateInfo } from 'app/router/context/InfoContext'
 import useCertificateCustomizationInfo from '../hooks/useCertificateCustomizationInfo'
-import { RouteObjectCustomize } from '../types'
+import { IRouterProtectionProps, RouteObjectCustomize } from '../types'
 
 export interface ICertInfo {
 	navigateInfo: INavigateInfo
@@ -76,9 +76,9 @@ function useProtectRoute(): IValidation {
 } // useProtectRoute()
 
 export default function RouterProtection({
-	waitingVerifyRouterIDList,
+	waitingVerifyRouterIDList = {},
 	children,
-}) {
+}: IRouterProtectionProps) {
 	WAITING_VERIFY_ROUTER_ID_LIST = waitingVerifyRouterIDList
 
 	const route = useRoute()

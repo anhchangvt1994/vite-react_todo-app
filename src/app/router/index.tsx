@@ -19,7 +19,7 @@ const routes: RouteObjectCustomize[] = [
 				<RouterInit>
 					<RouterValidation NotFoundPage={NotFoundPage}>
 						<RouterDeliver>
-							<RouterProtection waitingVerifyRouterIDList>
+							<RouterProtection>
 								<Layout />
 							</RouterProtection>
 						</RouterDeliver>

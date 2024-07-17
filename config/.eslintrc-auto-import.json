@@ -87,6 +87,7 @@
     "useTitleCase": true,
     "useTransition": true,
     "useUnsignedLetters": true,
-    "yup": true
+    "yup": true,
+    "ReactNode": true
   }
 }

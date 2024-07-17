@@ -23,3 +23,8 @@ export interface RouteObjectCustomize
 	}
 	children?: RouteObjectCustomize[]
 }
+
+export interface IRouterProtectionProps {
+	waitingVerifyRouterIDList?: { [key: string]: Array<string> }
+	children?: ReactNode
+}

@@ -75,6 +75,7 @@ export default defineConfig(async ({ mode }) => {
 							'HTMLProps',
 							'HTMLAttributes',
 							'ComponentType',
+							'ReactNode',
 						],
 						type: true,
 					},
